@@ -14,9 +14,6 @@ const settings = {
     "method": "GET"
 }
 
-
-
-
 const getNewQuote = (quote, author) => {
     return {
         type: NEW_QUOTE,
@@ -56,24 +53,31 @@ class Presentational extends React.Component {
             quote: "",
             author: "",
             data: [],
-            api_called: false
+            api_called: false,
+            twitterHref: "",
+            tumblrHref: ""
         }
         this.getNewQuote = this.getNewQuote.bind(this)
 
     }
 
     componentDidMount(){
+        console.log(this.state.twitterHref);
         $.ajax(settings).done((response)=> {
             let data = JSON.parse(response);
             let aux = getRandomQuote(data)
-            console.log(aux);
+
             this.setState((state) => ({
                 quote: aux.text,
                 author: aux.author,
                 data: data,
-                api_called: true
-            }));
+                api_called: true,
+                twitterHref: "https://twitter.com/intent/tweet?text="+aux.text.replace(/\s+/g, '+')+"+-+" + aux.author,
+                tumblrHref: "https://www.tumblr.com/widgets/share/tool?shareSource=legacy&canonicalUrl=&url=agar.io&posttype=quote&title=&caption="+aux.author.replace(/\s+/g, '+')+"&content="+aux.text.replace(/\s+/g, '+')
+
+        }));
         });
+        console.log(this.state.twitterHref);
     }
 
     getNewQuote() {
@@ -82,10 +86,16 @@ class Presentational extends React.Component {
             quote: randomQuote.text,
             author: randomQuote.author,
             data: this.state.data,
-            api_called: true
+            api_called: true,
+            twitterHref: "https://twitter.com/intent/tweet?text="+randomQuote.text.replace(/\s+/g, '+')+"+-+" + randomQuote.author,
+            tumblrHref: "https://www.tumblr.com/share"
         }));
+        console.log(this.state.twitterHref);
     }
+
+
     render() {
+        let tumblrAnchor = 0;
         return (
             <div id="wrapper">
                 <div id="quote-box">
@@ -100,7 +110,9 @@ class Presentational extends React.Component {
                             className="button"
                             id="tweet-quote"
                             title="Tweet this quote!"
-                            target="_top"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            href={this.state.twitterHref}
                         >
                             <i className="fa fa-twitter"></i>
                         </a>
@@ -108,7 +120,9 @@ class Presentational extends React.Component {
                             className="button"
                             id="tumblr-quote"
                             title="Post this quote on tumblr!"
+                            rel="noopener noreferrer"
                             target="_blank"
+                            href={this.state.tumblrHref}
                         >
                             <i className="fa fa-tumblr"></i>
                         </a>

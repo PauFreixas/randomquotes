@@ -101,31 +101,37 @@ class Presentational extends React.Component {
                 <div id="quote-box">
                     <div className="quote-text">
                         <i className="fa fa-quote-left"/>
-                        <span id="text">{this.state.quote}</span>
+                        <span id="text">
+
+                        {this.state.quote}
+
+                        </span>
                         <i className="fa fa-quote-right"/>
                     </div>
                     <div className="quote-author">- <span id="author">{this.state.author}</span></div>
                     <div className="buttons">
-                        <a
-                            className="button"
-                            id="tweet-quote"
-                            title="Tweet this quote!"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            href={this.state.twitterHref}
-                        >
-                            <i className="fa fa-twitter"></i>
-                        </a>
-                        <a
-                            className="button"
-                            id="tumblr-quote"
-                            title="Post this quote on tumblr!"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            href={this.state.tumblrHref}
-                        >
-                            <i className="fa fa-tumblr"></i>
-                        </a>
+                        <div className = "shareButtons">
+                          <a
+                              className="button"
+                              id="tweet-quote"
+                              title="Tweet this quote!"
+                              rel="noopener noreferrer"
+                              target="_blank"
+                              href={this.state.twitterHref}
+                          >
+                              <i className="fa fa-twitter"></i>
+                          </a>
+                          <a
+                              className="button"
+                              id="tumblr-quote"
+                              title="Post this quote on tumblr!"
+                              rel="noopener noreferrer"
+                              target="_blank"
+                              href={this.state.tumblrHref}
+                          >
+                              <i className="fa fa-tumblr"></i>
+                          </a>
+                        </div>
                         <button className="button" id="new-quote" onClick={this.getNewQuote}>New quote</button>
                     </div>
                 </div>

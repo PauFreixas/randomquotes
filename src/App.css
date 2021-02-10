@@ -36,38 +36,40 @@ body {
   color: #004;
 }
 #quote-box {
+  display: flex;
+  flex-direction: column;
   border-radius: 3px;
   position: relative;
-  width: 450px;
+  width: min(60vw, 450px);
   padding: 40px 50px;
-  display: table;
   background-color: #aaa;
 }
 .quote-text {
-
-text-align: center;
-width: 450px;
-height: auto;
-clear: both;
-font-weight: 500;
-font-size: 1.75em;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  height: auto;
+  clear: both;
+  font-weight: 500;
+  font-size: 1.75em;
 }
 i {
   font-size: 1em;
   margin-right: 0.4em;
 }
 .quote-author {
-  width: 450px;
+  display: flex;
+  justify-content: flex-end;
   height: auto;
   clear: both;
   padding-top: 20px;
   font-size: 1em;
-  text-align: right;
 }
 .buttons {
-  width: 450px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   margin: auto;
-  display: block;
 }
 .button {
   height: 38px;
@@ -79,15 +81,20 @@ i {
   font-size: 0.85em;
   padding: 8px 18px 6px 18px;
   margin-top: 30px;
-    align-content: center;
+
   opacity: 1;
   cursor: pointer;
 }
 .button:hover {
    opacity: 0.9;
  }
+
+.shareButtons {
+  display: flex;
+
+}
+
 #tweet-quote, #tumblr-quote {
-   float: left;
    padding: 0px;
    padding-top: 8px;
    text-align: center;
@@ -97,6 +104,5 @@ i {
    width: 40px;
  }
 #new-quote {
-   float: right;
- }
 
+ }
